@@ -121,15 +121,14 @@ public class MPDS implements ModInitializer {
 				addplayer.setString(1, player.getName().getString());
 				addplayer.setString(2, player.getUuid().toString());
 				addplayer.executeUpdate();
-				player.sendMessage(Text.translatable("CANNOT FIND " + player.getName().getString() + "'s DATA!").formatted(Formatting.RED));
-				player.sendMessage(Text.translatable("MAKE NEW ONE!").formatted(Formatting.RED));
 				LOGGER.warn("CANNOT FIND " + player.getName().getString() + "'s DATA!");
 				LOGGER.warn("MAKE NEW ONE!");
 			}
 
 		} catch (SQLException | InterruptedException e) {
 			player.sendMessage(Text.translatable("THERE WERE SOME ERROR WHEN LOAD PLAYER DATA").formatted(Formatting.RED));
-			LOGGER.error("THERE WERE SOME ERROR WHEN LOAD PLAYER DATA:");
+			player.sendMessage(Text.translatable("Please contact ShiftSpace to troubleshoot.").formatted(Formatting.WHITE));
+			LOGGER.error("THERE WERE SOME ERROR WHEN LOAD PLAYER" + player.getName().getString() + "'s DATA:");
 			e.printStackTrace();
 		}
     }
